@@ -1,0 +1,69 @@
+@forward "./base/index";
+@use "./util/index";
+
+@mixin para-style($size, $style, $color) {
+  font-size: $size;
+  text-align: $style;
+  color: $color;
+}
+
+.style {
+  background-color: forestgreen;
+  font-size: medium;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+.more {
+  @extend .style;
+}
+
+.product {
+  @extend .style;
+  background-color: hotpink;
+}
+
+@mixin setFontSize($value) {
+  @if $value == "small" {
+    font-size: 12px;
+  } @else if $value== "medium" {
+    font-size: 16px;
+  } @else if $value== "large" {
+    font-size: 15vw;
+  } @else {
+    font-size: initial;
+  }
+}
+
+main > section > P {
+  @include para-style(25px, center, red);
+}
+footer > P {
+  @include para-style(15px, justify, green);
+}
+
+header {
+  background: index.$header_bg;
+}
+
+main {
+  background: index.$main_bg;
+}
+
+footer {
+  background: index.$footer_bg;
+}
+
+#us {
+  @include setFontSize(small);
+}
+#uk {
+  @include setFontSize(medium);
+}
+#bd {
+  @include setFontSize(large);
+  text-align: justify;
+}
